@@ -20,6 +20,7 @@ import com.datumbox.common.persistentstorage.interfaces.DatabaseConnector;
 import java.util.Properties;
 
 /**
+ * 用来配置和创建内存数据连接，将所有数据加载到内存或序列化到文件<br>
  * The InMemoryConfiguration class is used to configure the InMemory persistence
  * storage and generate new storage connections. InMemory storage loads all the
  * data in memory and persists them in serialized files.
@@ -29,12 +30,19 @@ import java.util.Properties;
 public class InMemoryConfiguration implements DatabaseConfiguration {
     
     //Mandatory constants
+    /**
+     * 数据库名称分隔符
+     */
     private static final String DBNAME_SEPARATOR = "_"; //NOT permitted characters are: <>:"/\|?*
 
     //DB specific properties
+    /**
+     * 默认的输出路径
+     */
     private String outputFolder = "./";
     
     /**
+     * 初始化到数据库的一个连接<br>
      * It initializes a new connector to the Database.
      * 
      * @param database
@@ -46,6 +54,7 @@ public class InMemoryConfiguration implements DatabaseConfiguration {
     }
     
     /**
+     * 获取分隔符<br>
      * Returns the separator that is used in the DB names.
      * 
      * @return 
@@ -56,6 +65,7 @@ public class InMemoryConfiguration implements DatabaseConfiguration {
     }
     
     /**
+     * 通过一个配置文件初始化配置<br>
      * Initializes the InMemoryConfiguration object by using a property file.
      * 
      * @param properties 
@@ -66,6 +76,7 @@ public class InMemoryConfiguration implements DatabaseConfiguration {
     }
     
     /**
+     * 获取输出文件夹<br>
      * Getter for the output folder where the InMemory data files are stored.
      * 
      * @return 
@@ -75,6 +86,7 @@ public class InMemoryConfiguration implements DatabaseConfiguration {
     }
     
     /**
+     * 设置输出文件夹<br>
      * Setter for the output folder where the InMemory data files are stored.
      * 
      * @param outputFolder 

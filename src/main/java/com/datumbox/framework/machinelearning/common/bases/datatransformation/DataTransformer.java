@@ -25,11 +25,12 @@ import com.datumbox.framework.machinelearning.common.bases.baseobjects.BaseTrain
 import com.datumbox.framework.machinelearning.common.dataobjects.KnowledgeBase;
 
 /**
+ * 框架中所有的数据转换器<br>
  * Base class for all the Data Transformers of the framework.
  *
  * @author Vasilis Vryniotis <bbriniotis@datumbox.com>
- * @param <MP>
- * @param <TP>
+ * @param <MP> 模型参数
+ * @param <TP> 训练参数
  */
 public abstract class DataTransformer<MP extends DataTransformer.ModelParameters, TP extends DataTransformer.TrainingParameters> extends BaseTrainable<MP, TP, KnowledgeBase<MP, TP>> {
 

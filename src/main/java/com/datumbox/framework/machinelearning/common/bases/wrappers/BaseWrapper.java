@@ -26,14 +26,16 @@ import com.datumbox.framework.machinelearning.common.bases.datatransformation.Da
 import com.datumbox.framework.machinelearning.common.bases.featureselection.FeatureSelection;
 
 /**
+ * 一个可供训练，使用组合而不是继承来实现机器学习模型。它包含很多种内部对象，比如数据转换、特征
+ * 选择和机器学习模型。
  * The BaseWrapper is a trainable object that uses composition instead of inheritance
  * to extend the functionality of a BaseMLmodel. It includes various internal objects
  * such as Data Transformers, Feature Selectors and Machine Learning models which 
  * are combined in the training and prediction process. 
  * 
  * @author Vasilis Vryniotis <bbriniotis@datumbox.com>
- * @param <MP>
- * @param <TP>
+ * @param <MP> 模型参数
+ * @param <TP> 训练参数
  */
 public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP extends BaseWrapper.TrainingParameters> extends BaseTrainable<MP, TP, KnowledgeBase<MP, TP>> {
     

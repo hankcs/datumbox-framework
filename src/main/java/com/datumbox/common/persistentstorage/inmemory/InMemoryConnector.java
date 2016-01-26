@@ -31,6 +31,7 @@ import java.util.HashMap;
 
 
 /**
+ * 用来在内存中保存和加载数据、创建BigMaps并且储存数据<br>
  * The InMemoryConnector is responsible for saving and loading data in memory,
  * creating BigMaps and persisting data. The InMemoryConnector loads all the
  * data in memory and persists all data in serialized files.
@@ -43,6 +44,7 @@ public class InMemoryConnector extends AutoCloseConnector {
     private final String database;
     
     /**
+     * 创建连接<br>
      * Non-public constructor used by InMemoryConfiguration class to generate
      * new connections.
      * 
@@ -56,6 +58,7 @@ public class InMemoryConnector extends AutoCloseConnector {
     }
     
     /**
+     * 负责将可序列化对象存入数据库<br>
      * This method is responsible for storing serializable objects in the
      * database.
      * 

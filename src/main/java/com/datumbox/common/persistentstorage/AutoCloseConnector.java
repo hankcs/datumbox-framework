@@ -50,6 +50,7 @@ public abstract class AutoCloseConnector implements DatabaseConnector, AutoClose
     }
     
     /**
+     * 检查连接是否被关闭<br>
      * Checks if the connector is closed.
      * 
      * @return 
@@ -73,6 +74,7 @@ public abstract class AutoCloseConnector implements DatabaseConnector, AutoClose
     }
     
     /**
+     * 保证连接没有被关闭<br>
      * Ensures the connection is not closed.
      */
     protected void ensureNotClosed() {

@@ -22,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 /**
+ * 所有文本提取器的基类。文本提取器是通过一个参数类来配置的<br>
  * Base class for all Text exactor classes. The Text Extractors are parameterized
  * with a Parameters class and they take as input strings.
  *
@@ -33,6 +34,7 @@ import java.util.Map;
 public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
     
     /**
+     * 文本提取器的参数<br>
      * Parameters of the TextExtractor.
      */
     public static abstract class Parameters implements Parameterizable {         
@@ -40,6 +42,7 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
         private Class<? extends Tokenizer> tokenizer = WhitespaceTokenizer.class;
 
         /**
+         * 通过一个分词器类来初始化一个分词器
          * Generates a new Tokenizer object by using the provided tokenizer class.
          * 
          * @return 
@@ -58,6 +61,7 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
         }
 
         /**
+         * 获取分词器类<br>
          * Getter of the Tokenizer class.
          * 
          * @return 
@@ -67,6 +71,7 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
         }
         
         /**
+         * 设置分词器类<br>
          * Setter of the Tokenizer class.
          * 
          * @param tokenizer 
@@ -78,11 +83,13 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
     }
     
     /**
+     * 文本提取器的参数<br>
      * The Parameters of the TextExtractor.
      */
     protected TP parameters;
     
     /**
+     * 通过参数构造文本提取器<br>
      * Public constructor that accepts as arguments the Parameters object.
      * 
      * @param parameters 
@@ -92,6 +99,8 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
     }
     
     /**
+     * 这个方法输入一个字符串，输出分析结果map。但是map键值对的类型是根据提取器的具体实现
+     * 而确定的。一些文本提取器可能会同时输出单词的词频等等信息。
      * This method gets as input a string and returns a map with the result of
      * the analysis. The type and the contents of the map depend on the implementation
      * of the extractor. Some extractors provide the tokens (keywords) along with 
@@ -104,6 +113,7 @@ public abstract class TextExtractor<TP extends TextExtractor.Parameters, K, V> {
     public abstract Map<K, V> extract(final String text);
     
     /**
+     * 通过提供文本提取器的类名生成一个新的实例<br>
      * Generates a new instance of a TextExtractor by providing the Class of the
      * TextExtractor.
      * 

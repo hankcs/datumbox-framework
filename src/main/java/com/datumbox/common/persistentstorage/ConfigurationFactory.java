@@ -24,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
 /**
+ * 通过配置文件生成配置对象的工厂类<br>
  * Factory that initializes and returns the DatabaseConfiguration based on the
  * configuration file. 
  * 
@@ -31,6 +32,7 @@ import java.util.Properties;
  */
 public enum ConfigurationFactory {
     /**
+     * 内存是默认的储存引擎，非常快，但必须考虑内存是否足够<br>
      * InMemory is the default storage engine, it is very fast and it should be used when the data fit the memory.
      */
     INMEMORY(InMemoryConfiguration.class),
@@ -52,11 +54,13 @@ public enum ConfigurationFactory {
     }
     
     /**
+     * 通过配置文件初始化配置对象<br>
      * Initializes the Configuration Object based on the config file.
      * 
      * @return 
      */
     public DatabaseConfiguration getConfiguration() {
+        //初始化dbConfig对象
         //Initialize dbConfig object
         DatabaseConfiguration dbConf;
         try {
@@ -69,7 +73,8 @@ public enum ConfigurationFactory {
         Properties properties = new Properties();
         
         ClassLoader cl = ConfigurationFactory.class.getClassLoader();
-        
+
+        //从jar中加载默认配置
         //Load default properties from jar
         try (InputStream in = cl.getResourceAsStream("datumbox.config.default.properties")) {
             properties.load(in);
@@ -77,9 +82,11 @@ public enum ConfigurationFactory {
         catch(IOException ex) {
             throw new RuntimeException(ex);
         }
-        
+
+        //查找用户配置
         //Look for user defined properties
         if(cl.getResource("datumbox.config.properties")!=null) {
+            //如果存在则覆盖默认的
             //Override the default if they exist
             try (InputStream in = cl.getResourceAsStream("datumbox.config.properties")) {
                 properties.load(in);

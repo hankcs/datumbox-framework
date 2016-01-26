@@ -18,6 +18,7 @@ package com.datumbox.common.objecttypes;
 import java.io.Serializable;
 
 /**
+ * 这个借口是用来标记用做参数的域的类名的<br>
  * This interface is used to mark classes that work as wrappers/containers of 
  * fields that parameterize other algorithms. 
  * 

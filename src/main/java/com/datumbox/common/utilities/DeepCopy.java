@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * 通过序列化和反序列化创建一个对象的深度拷贝<br>
  * Creates a Deep Copy of an object by serializing and deserializing it.
  * 
  * @author Vasilis Vryniotis <bbriniotis@datumbox.com>

@@ -59,21 +59,29 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
     }
     
     /**
+     * 包含文本分类器的训练参数<br>
      * It contains the Training Parameters of the Text Classifier.
      */
     public static class TrainingParameters extends BaseWrapper.TrainingParameters<DataTransformer, FeatureSelection, BaseMLmodel> {
         
         //Classes
 
+        /**
+         * 文本提取器
+         */
         private Class<? extends TextExtractor> textExtractorClass;
 
         //Parameter Objects
 
+        /**
+         * 文本提取器的参数
+         */
         private TextExtractor.Parameters textExtractorParameters;
 
         //Field Getters/Setters
         
         /**
+         * 获取文本提取器对应的类<br>
          * Getter for the Text Extractor class which we use during the analysis.
          * 
          * @return 
@@ -83,6 +91,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
         }
         
         /**
+         * 设置用于提取文本的类
          * Setter for the Text Extractor class which we use during the analysis.
          * The Text Extractor is responsible for extracting the keywords from
          * the text examples.
@@ -94,6 +103,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
         }
         
         /**
+         * 获取文本提取工具所用到的参数
          * Getter for the Text Extractor Parameters.
          * 
          * @return 
@@ -103,6 +113,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
         }
         
         /**
+         * 设置文本提取工具所用到的参数
          * Setter for the Text Extractor Parameters.
          * 
          * @param textExtractorParameters 
@@ -114,11 +125,12 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
     }
 
     /**
+     * 构造文本分类器
      * Constructor for the TextClassifier class. It accepts as arguments the name of the
      * database were the results are stored and the Database Configuration.
      * 
-     * @param dbName
-     * @param dbConf 
+     * @param dbName 数据库名称
+     * @param dbConf 数据库配置
      */
     public TextClassifier(String dbName, DatabaseConfiguration dbConf) {
         super(dbName, dbConf, TextClassifier.ModelParameters.class, TextClassifier.TrainingParameters.class);
