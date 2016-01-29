@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 所有模型的基类，包含机器学习模型、数据预处理、特征选择等等<br>
  * Base class for every Model of the Framework. This includes Machine Learning
  * Models, Data Transformers, Feature Selectors etc.
  *
@@ -35,22 +36,26 @@ import org.slf4j.LoggerFactory;
 public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends BaseTrainingParameters, KB extends KnowledgeBase<MP, TP>> implements Trainable<MP, TP> {
     
     /**
+     * 所有算法的logger，通过使用非静态的形式，打印所有继承类的名称<br>
      * The Logger of all algorithms.
      * We want this to be non-static in order to print the names of the inherited classes.
      */
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     
     /**
+     * 数据库实例<br>
      * The KnowledgeBase instance of the algorithm.
      */
     protected KB knowledgeBase;
     
     /**
+     * 数据库名称<br>
      * The name of the Database where we persist our data.
      */
     protected String dbName;
     
     /**
+     * 给定算法类，创建一个可训练对象出来<br>
      * Generates a new instance of a BaseTrainable by providing the Class of the
      * algorithm.
      * 
@@ -73,6 +78,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
 
     /**
+     * 不包含知识库初始化的构造函数<br>
      * Protected Constructor which does not include the initialization of the
      * KnowledgeBase.
      * 
@@ -90,6 +96,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
     
     /**
+     * 初始化知识库的构造函数<br>
      * Protected Constructor which includes the initialization of the
      * KnowledgeBase.
      * 
@@ -105,6 +112,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
     
     /**
+     * 获取训练后的模型参数<br>
      * Returns the model parameters that were estimated after training.
      * 
      * @return 
@@ -116,6 +124,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     } 
     
     /**
+     * 获取训练参数<br>
      * It returns the training parameters that configure the algorithm.
      * 
      * @return 
@@ -126,6 +135,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
     
     /**
+     * 使用
      * Trains a Machine Learning model using the provided training data. This
      * method is responsible for initializing appropriately the algorithm and then
      * calling the _fit() method which performs the learning.

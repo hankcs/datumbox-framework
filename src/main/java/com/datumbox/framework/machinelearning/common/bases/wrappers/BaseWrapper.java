@@ -72,30 +72,50 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
     }
     
     /**
+     * 包含所有的训练参数的对象<br>
      * The TrainingParameters class stores the parameters that can be changed
      * before training the algorithm.
      * 
-     * @param <DT>
-     * @param <FS>
-     * @param <ML>
+     * @param <DT> 数据预处理
+     * @param <FS> 特征选择
+     * @param <ML> 机器学习模型
      */
     public static abstract class TrainingParameters<DT extends DataTransformer, FS extends FeatureSelection, ML extends BaseMLmodel> extends BaseTrainingParameters {
         
         //Classes
+        /**
+         * 数据预处理类
+         */
         private Class<? extends DT> dataTransformerClass;
 
+        /**
+         * 特征选择类
+         */
         private Class<? extends FS> featureSelectionClass;
-        
+
+        /**
+         * 机器学习类
+         */
         private Class<? extends ML> mlmodelClass;
        
         //Parameter Objects
+        /**
+         * 给数据预处理用的参数
+         */
         private DT.TrainingParameters dataTransformerTrainingParameters;
-        
+
+        /**
+         * 特征选择参数
+         */
         private FS.TrainingParameters featureSelectionTrainingParameters;
-        
+
+        /**
+         * 机器学习参数
+         */
         private ML.TrainingParameters mlmodelTrainingParameters;
 
         /**
+         * 获取预处理类<br>
          * Getter for the Java class of the Data Transformer.
          * 
          * @return 
@@ -105,6 +125,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置预处理类，接受null<br>
          * Setter for the Java class of the Data Transformer. Pass null for none.
          * 
          * @param dataTransformerClass 
@@ -114,6 +135,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 获取特征选择类<br>
          * Getter for the Java class of the Feature Selector.
          * 
          * @return 
@@ -123,6 +145,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置特征选择类<br>
          * Setter for the Java class of the Feature Selector. Pass null for none.
          * 
          * @param featureSelectionClass 
@@ -132,6 +155,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 获取机器学习模型类<br>
          * Getter for the Java class of the Machine Learning model which will
          * be used internally.
          * 
@@ -153,6 +177,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 获取预处理工具的参数
          * Getter for the Training Parameters of the Data Transformer.
          * 
          * @return 
@@ -162,6 +187,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置预处理参数<br>
          * Setter for the Training Parameters of the Data Transformer. Pass null
          * for none.
          * 
@@ -172,6 +198,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
 
         /**
+         * 获取特征选择参数<br>
          * Getter for the Training Parameters of the Feature Selector.
          * 
          * @return 
@@ -181,6 +208,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置特征选择参数<br>
          * Setter for the Training Parameters of the Feature Selector. Pass null
          * for none.
          * 
@@ -191,6 +219,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
 
         /**
+         * 获取机器学习模型的训练参数<br>
          * Getter for the Training Parameters of the Machine Learning model.
          * 
          * @return 
@@ -212,6 +241,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
     }
 
     /**
+     * 不公开的构造<br>
      * Protected constructor of the algorithm.
      * 
      * @param dbName

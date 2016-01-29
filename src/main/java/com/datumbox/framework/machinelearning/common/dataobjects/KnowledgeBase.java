@@ -25,6 +25,8 @@ import java.lang.reflect.InvocationTargetException;
 
 
 /**
+ * 知识库，或称“数据库”，是通过算法学习到的数据的集合。同时还是两个类的wrapper：模型参数和
+ * 训练参数。
  * The KnowledgeBase represents the "database" that the algorithm learned during  
  * training. It is a wrapper of the 2 classes: the model parameters and the 
  * training parameters.
@@ -35,41 +37,49 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTrainingParameters> implements Serializable {
     /**
+     * 数据库名称<br>
      * The name of the database which is used by the Database Connector.
      */
     protected String dbName; 
     
     /**
+     * 链接到持久化工具的连接<br>
      * Connection to the Permanent Storage Engine driver.
      */
     protected transient DatabaseConnector dbc;
     
     /**
+     * 持久化工具的配置<br>
      * The database configuration of the permanent storage.
      */
     protected transient DatabaseConfiguration dbConf;
     
     /**
+     * 模型参数类<br>
      * The class of the ModelParameters class of the algorithm.
      */
     protected Class<MP> mpClass;
     
     /**
+     * 训练参数类<br>
      * The class of the TrainingParameters class of the algorithm.
      */
     protected Class<TP> tpClass;
     
     /**
+     * 模型参数对象<br>
      * The ModelParameters object of the algorithm.
      */
     protected MP modelParameters;
     
     /**
+     * 训练参数对象<br>
      * The TrainingParameters object of the algorithm.
      */
     protected TP trainingParameters;
     
     /**
+     * 公开构造
      * Public constructor of the object.
      * 
      * @param dbName
@@ -88,6 +98,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 获取数据库连接<br>
      * Getter for the Database Connector.
      * 
      * @return 
@@ -97,6 +108,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 获取数据库配置<br>
      * Getter for the Database Configuration.
      * 
      * @return 
@@ -106,6 +118,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
 
     /**
+     * 将数据库保存到持久化库中<br>
      * Saves a KnowledgeBase to the permanent storage.
      */
     public void save() {
@@ -117,6 +130,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 从持久化仓库中加载一个数据库<br>
      * Loads a KnowledgeBase from the permanent storage.
      */
     public void load() {
@@ -132,6 +146,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 删除数据库<br>
      * Deletes the database of the algorithm. 
      */
     public void erase() {
@@ -143,6 +158,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 关闭所有资源<br>
      * Closes all the resources of the algorithm. 
      */
     public void close() {
@@ -150,6 +166,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 重新打开，会删除上次的数据<br>
      * Deletes and re-initializes KnowledgeBase object. It erases all data from 
      * storage, it releases all resources, reinitializes the internal objects and
      * opens new connection to the permanent storage.
@@ -171,6 +188,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
 
     /**
+     * 获取训练参数<br>
      * Getter for the Training Parameters.
      * 
      * @return 
@@ -180,6 +198,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
 
     /**
+     * 设置训练参数<br>
      * Setter for the Training Parameters.
      * 
      * @param trainingParameters 
@@ -189,6 +208,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
 
     /**
+     * 获取模型参数<br>
      * Getter for the Model Parameters.
      * 
      * @return 
@@ -198,6 +218,7 @@ public class KnowledgeBase<MP extends BaseModelParameters, TP extends BaseTraini
     }
     
     /**
+     * 设置模型参数<br>
      * Setter for the Model Parameters.
      * 
      * @param modelParameters 
