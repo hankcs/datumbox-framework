@@ -142,6 +142,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置ML类
          * Setter for the Java class of the Machine Learning model which will
          * be used internally.
          * 
@@ -199,6 +200,7 @@ public abstract class BaseWrapper<MP extends BaseWrapper.ModelParameters, TP ext
         }
         
         /**
+         * 设置训练参数<br>
          * Setter for the Training Parameters of the Machine Learning model.
          * 
          * @param mlmodelTrainingParameters 

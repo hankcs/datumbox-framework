@@ -56,6 +56,7 @@ public abstract class BaseModelParameters implements Learnable {
     }
 
     /**
+     * 获取训练实例数<br>
      * Getter for the total number of records used in training.
      * 
      * @return 
@@ -65,6 +66,7 @@ public abstract class BaseModelParameters implements Learnable {
     }
 
     /**
+     * 设置训练实例数<br>
      * Setter for the total number of records used in training.
      * 
      * @param n 
@@ -74,6 +76,7 @@ public abstract class BaseModelParameters implements Learnable {
     }
 
     /**
+     * 获取样本的维度数<br>
      * Getter for the dimension of the dataset used in training.
      * 
      * @return 
@@ -83,6 +86,7 @@ public abstract class BaseModelParameters implements Learnable {
     }
 
     /**
+     * 设置样本维度数<br>
      * Setter for the dimension of the dataset used in training.
      * 
      * @param d 
