@@ -125,7 +125,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
     }
 
     /**
-     * 构造文本分类器
+     * 构造文本分类器<br>
      * Constructor for the TextClassifier class. It accepts as arguments the name of the
      * database were the results are stored and the Database Configuration.
      * 
@@ -137,6 +137,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
     }
     
     /**
+     * 使用给定的数据集训练一个机器学习模型<br>
      * Trains a Machine Learning model using the provided dataset files. The data
      * map should have as keys the names of each class and as values the URIs
      * of the training files. The training files should contain one training example
@@ -146,6 +147,7 @@ public class TextClassifier extends BaseWrapper<TextClassifier.ModelParameters, 
      * @param trainingParameters 
      */
     public void fit(Map<Object, URI> datasets, TrainingParameters trainingParameters) { 
+        //构造训练集
         //build trainingDataset
         TextExtractor textExtractor = TextExtractor.newInstance(trainingParameters.getTextExtractorClass(), trainingParameters.getTextExtractorParameters());
         Dataset trainingData = Dataset.Builder.parseTextFiles(datasets, textExtractor, knowledgeBase.getDbConf());

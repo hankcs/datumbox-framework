@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.List;
 
 /**
+ * 卡方特征选择<br>
  * Implementation of the Chisquare Feature Selection algorithm which can be used
  * for evaluating categorical and boolean variables.
  * 

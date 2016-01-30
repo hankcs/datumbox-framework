@@ -58,6 +58,7 @@ public class StringCleaner {
     }
     
     /**
+     * 将所有的URL替换为一个固定的词<br>
      * Replaces all the URLs within the text with a token.
      * 
      * @param text
@@ -68,6 +69,7 @@ public class StringCleaner {
     }
     
     /**
+     * 将所有的表情替换为一个固定的词语<br>
      * Replaces all the smileys within the text with their tokens.
      * 
      * @param text
@@ -81,6 +83,7 @@ public class StringCleaner {
     }
     
     /**
+     * 将多个空格替换为一个<br>
      * Replaces all extra spaces with one space.
      * 
      * @param text
@@ -92,6 +95,7 @@ public class StringCleaner {
     }
     
     /**
+     * 去掉标点<br>
      * Removes all the non-alphanumeric symbols from the text.
      * 
      * @param text
@@ -119,6 +123,7 @@ public class StringCleaner {
     }
     
     /**
+     * 消除音标<br>
      * Removes all accepts from the text.
      * 
      * @param text
@@ -131,6 +136,7 @@ public class StringCleaner {
     }
     
     /**
+     * 文本预处理，分割url和表情<br>
      * Convenience method which tokenizes the URLs and the smileys, removes accents 
      * and symbols and eliminates the extra spaces from the provided text.
      * 

@@ -40,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 数据集，储存一些训练实例<br>
  * The Dataset class stores a list of Records Objects and several meta-data. All
  * Machine Learning algorithms get as argument Dataset objects. The class has an
  * internal static Builder class which can be used to generate Dataset objects 
@@ -65,6 +66,7 @@ public final class Dataset implements Serializable, Iterable<Integer> {
     public static final class Builder {
         
         /**
+         * 根据给定的一系列文本文件构造一个数据集<br>
          * It builds a Dataset object from a provided list of text files. The data
          * map should have as keys the names of each class and as values the URIs
          * of the training files. The files should contain one training example

@@ -135,7 +135,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
     
     /**
-     * 使用
+     * 使用给定数据训练机器学习模型<br>
      * Trains a Machine Learning model using the provided training data. This
      * method is responsible for initializing appropriately the algorithm and then
      * calling the _fit() method which performs the learning.
@@ -178,6 +178,7 @@ public abstract class BaseTrainable<MP extends BaseModelParameters, TP extends B
     }
     
     /**
+     * 估计算法的系数<br>
      * This method estimates the actual coefficients of the algorithm.
      * 
      * @param trainingData 

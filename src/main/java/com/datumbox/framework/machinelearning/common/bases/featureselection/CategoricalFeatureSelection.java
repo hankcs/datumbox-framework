@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 根据类别的特征选择器<br>
  * Abstract class which is the base of every Categorical Feature Selection algorithm.
  * 
  * @author Vasilis Vryniotis <bbriniotis@datumbox.com>
@@ -41,14 +42,19 @@ import org.slf4j.LoggerFactory;
 public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureSelection.ModelParameters, TP extends CategoricalFeatureSelection.TrainingParameters> extends FeatureSelection<MP, TP> {
     
     /**
+     * 模型参数的基类<br>
      * Base class for the Model Parameters of the algorithm.
      */
     public static abstract class ModelParameters extends FeatureSelection.ModelParameters {
 
+        /**
+         * 储存所有的特征<br>
+         */
         @BigMap
         private Map<Object, Double> featureScores; //map which stores the scores of the features
 
         /**
+         * 以数据连接器作为参数的构造方法<br>
          * Protected constructor which accepts as argument the DatabaseConnector.
          * 
          * @param dbc 
@@ -58,6 +64,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 获取特征分数<br>
          * Getter of the Feature Scores.
          * 
          * @return 
@@ -67,6 +74,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 设置特征分数<br>
          * Setter of the Feature Scores.
          * 
          * @param featureScores 
@@ -78,15 +86,26 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
     }
     
     /**
+     * 这个算法的训练参数<br>
      * Base class for the Training Parameters of the algorithm.
      */
     public static abstract class TrainingParameters extends FeatureSelection.TrainingParameters {
-        
+
+        /**
+         * 特征阀值
+         */
         private Integer rareFeatureThreshold = null;
+        /**
+         * 最多特征数
+         */
         private Integer maxFeatures=null;
+        /**
+         * 忽略数值类型的特征
+         */
         private boolean ignoringNumericalFeatures = true;
         
         /**
+         * 获取特征频次阀值，任何少于该值的特征将会被删除<br>
          * Getter for the rare feature threshold. Any feature that exists
          * in the training dataset less times than this number will be removed
          * directly. 
@@ -98,6 +117,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 设置特征频次阀值<br>
          * Setter for the rare feature threshold. Set to null to deactivate this 
          * feature. Any feature that exists in the training dataset less times 
          * than this number will be removed directly. 
@@ -109,6 +129,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 获取数据库中最多特征频数目<br>
          * Getter for the maximum number of features that should be kept in the
          * dataset.
          * 
@@ -119,6 +140,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 设置数据库中最多特征数目<br>
          * Setter for the maximum number of features that should be kept in the
          * dataset. Set to null for unlimited.
          * 
@@ -129,6 +151,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 获取算法是否应该忽略数值类型的特征<br>
          * Getter for whether the algorithm should ignore numerical features.
          * 
          * @return 
@@ -138,6 +161,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         }
         
         /**
+         * 设置算法是否应该忽略数值类型的特征<br>
          * Setter for whether the algorithm should ignore numerical features.
          * 
          * @param ignoringNumericalFeatures 
@@ -149,6 +173,7 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
     }
     
     /**
+     * 构造<br>
      * Protected constructor of the algorithm.
      * 
      * @param dbName
@@ -169,13 +194,9 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
         Map<List<Object>, Integer> tmp_featureClassCounts = dbc.getBigMap("tmp_featureClassCounts", true); //map which stores the counts of feature-class combinations.
         Map<Object, Double> tmp_featureCounts = dbc.getBigMap("tmp_featureCounts", true); //map which stores the counts of the features
 
-        
         //build the maps with the feature statistics and counts
         buildFeatureStatistics(data, tmp_classCounts, tmp_featureClassCounts, tmp_featureCounts);
-        
-        
-        
-        
+
         //call the overriden method to get the scores of the features.
         //WARNING: do not use feature scores for any weighting. Sometimes the features are selected based on a minimum and others on a maximum criterion.
         estimateFeatureScores(tmp_classCounts, tmp_featureClassCounts, tmp_featureCounts);
@@ -279,7 +300,14 @@ public abstract class CategoricalFeatureSelection<MP extends CategoricalFeatureS
             filterData(data, dbc, featureCounts, ignoringNumericalFeatures);
         }
     }
-    
+
+    /**
+     * 统计特征
+     * @param data
+     * @param classCounts
+     * @param featureClassCounts
+     * @param featureCounts
+     */
     private void buildFeatureStatistics(Dataset data, Map<Object, Integer> classCounts, Map<List<Object>, Integer> featureClassCounts, Map<Object, Double> featureCounts) {        
         logger.debug("buildFeatureStatistics()");
         TP trainingParameters = knowledgeBase.getTrainingParameters();

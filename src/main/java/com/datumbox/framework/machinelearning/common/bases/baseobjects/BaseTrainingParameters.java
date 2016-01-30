@@ -18,6 +18,7 @@ package com.datumbox.framework.machinelearning.common.bases.baseobjects;
 import com.datumbox.common.objecttypes.Parameterizable;
 
 /**
+ * 所有训练参数的基类<br>
  * Base class for every TrainingParameters class in the framework. 
  *
  * @author Vasilis Vryniotis <bbriniotis@datumbox.com>

@@ -26,6 +26,7 @@ import java.util.Map;
 import org.apache.commons.lang3.math.NumberUtils;
 
 /**
+ * NGram特征提取<br>
  * The NgramsExtractor class can be used to tokenize a string, extract its keyword
  * combinations and estimate their occurrence scores in the original string. This
  * extractor is ideal for the feature extraction phase of Text Classification.
@@ -193,11 +194,22 @@ public class NgramsExtractor extends TextExtractor<NgramsExtractor.Parameters, S
     }
     
     private static final String SEPARATOR = "_";
-        
+    /**
+     * ID转为word
+     */
     private Map<Integer, String> ID2word; //ID=>Kwd
+    /**
+     * ID的频次
+     */
     private Map<Integer, Double> ID2occurrences; //ID=>counts/scores
+    /**
+     * 单词出现的位置
+     */
     private Map<Integer, Integer> position2ID; //word position=>ID
 
+    /**
+     * 文档中的单词个数
+     */
     private Integer numberOfWordsInDoc;
 
     /**
@@ -224,8 +236,7 @@ public class NgramsExtractor extends TextExtractor<NgramsExtractor.Parameters, S
         ID2occurrences = new HashMap<>();
         position2ID = new LinkedHashMap<>(); //maintain the order of insertation
         numberOfWordsInDoc = 0;
-        
-        
+
         buildInternalArrays(text);
         
         Map<String, Double> keywordProximityScores = new HashMap<>();
@@ -388,6 +399,12 @@ public class NgramsExtractor extends TextExtractor<NgramsExtractor.Parameters, S
         return points;
     }
 
+    /**
+     * 获取窗口内部词共现及其距离<br>
+     * @param windowStart
+     * @param maxCombinations
+     * @return
+     */
     private Map<String, Integer> getCombinationsWithinWindow(Integer windowStart, int maxCombinations) {
         int windowLength=Math.min(windowStart+parameters.getExaminationWindowLength(), numberOfWordsInDoc);
         
@@ -456,21 +473,32 @@ public class NgramsExtractor extends TextExtractor<NgramsExtractor.Parameters, S
         
         return wordCombinations;
     }
-    
+
+    /**
+     * 是否使用这个单词<br>
+     * @param wordID
+     * @return
+     */
     private boolean useThisWord(Integer wordID) {
         String word = ID2word.get(wordID);
         if(word==null) {
             return false;
         }
         else if(parameters.getMinWordLength()>1 && word.length() <parameters.getMinWordLength() && !NumberUtils.isNumber(word)) {
+            // 太短不要，数字不要
             return false;
         }
         else if(parameters.getMinWordOccurrence()>1 && ID2occurrences.get(wordID)<parameters.getMinWordOccurrence()) {
+            // 出现次数少也不要
             return false;
         }
         return true;
     }
-    
+
+    /**
+     * 建立中间数据<br>
+     * @param text
+     */
     private void buildInternalArrays(final String text) {
         
         Map<String, Integer> word2ID = new HashMap<>();
