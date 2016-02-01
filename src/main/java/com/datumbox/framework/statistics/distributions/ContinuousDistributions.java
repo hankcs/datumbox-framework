@@ -19,6 +19,7 @@ import com.datumbox.common.utilities.RandomGenerator;
 import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
 
 /**
+ * 提供常见连续分布的概率密度函数和累积分布函数计算<br>
  * This class provides methods for the CDFs and PDFs of the most common continuous 
  * distributions.
  * 
@@ -27,11 +28,12 @@ import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
 public class ContinuousDistributions {
     
     /**
+     * 给定卡方值和自由度，计算从0到x的累积分布函数值<br>
      * Returns the probability from 0 to x of a specific chisquare score and degrees of freedom
      * 
-     * @param x
-     * @param df
-     * @return 
+     * @param x 卡方值
+     * @param df 自由度
+     * @return 从0到x的累积分布函数值
      * @throws IllegalArgumentException 
      */
     public static double ChisquareCdf(double x, int df) throws IllegalArgumentException {
@@ -43,11 +45,12 @@ public class ContinuousDistributions {
     }
     
     /**
+     * 给定高斯函数的z值，返回p值（累积分布函数值）<br>
      * Returns the p-value of a specific z score for Gaussian
      * Ported from C# code posted at http://jamesmccaffrey.wordpress.com/2010/11/05/programmatically-computing-the-area-under-the-normal-curve/
      * 
-     * @param z
-     * @return 
+     * @param z 从负无穷到正无穷的值
+     * @return  高斯函数累积分布函数值
      */
     public static double GaussCdf(double z) {
         // input = z-value (-inf to +inf)
@@ -485,7 +488,8 @@ public class ContinuousDistributions {
     }
     
     /**
-     * Returns the x score of a specific pvalue and degrees of freedom for Chisquare. It We just do a bisectionsearch for a value within CHI_EPSILON, relying on the monotonicity of ChisquareCdf().
+     * Returns the x score of a specific pvalue and degrees of freedom for Chisquare.
+     * It We just do a bisectionsearch for a value within CHI_EPSILON, relying on the monotonicity of ChisquareCdf().
      * Ported from Javascript code posted at http://www.fourmilab.ch/rpkp/experiments/analysis/chiCalc.js
      * 
      * @param p

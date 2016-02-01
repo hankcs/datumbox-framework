@@ -40,6 +40,7 @@ import java.util.List;
 public class ChisquareSelect extends CategoricalFeatureSelection<ChisquareSelect.ModelParameters, ChisquareSelect.TrainingParameters>{
     
     /**
+     * 储存模型从训练中学到的参数<br>
      * The ModelParameters class stores the coefficients that were learned during
      * the training of the algorithm.
      */
@@ -57,6 +58,7 @@ public class ChisquareSelect extends CategoricalFeatureSelection<ChisquareSelect
     }
 
     /**
+     * 储存训练之前可变的参数<br>
      * The TrainingParameters class stores the parameters that can be changed
      * before training the algorithm.
      */
